@@ -20,29 +20,29 @@ id			{letter}+({letter}|{digit})*
 %%
 
  /* Arithmetic */
-"+"     { }
-"-" 	{ }
-"*" 	{ }
-"/" 	{ }
-"%"     { }
+"+"     {return *yytext; }
+"-" 	{return *yytext; }
+"*" 	{return *yytext; }
+"/" 	{return *yytext; }
+"%"     {return *yytext; }
 "++"    { }
 "--"    { }
 
  /* Relational */
-">"		{ }
-"<"		{ }
-">="	{ }
-"<="	{ }
-"=="	{ }
-"!="	{ }
+">"		{return *yytext; }
+"<"		{return *yytext; }
+">="	{return bigger; }
+"<="	{return smaller; }
+"=="	{return equal; }
+"!="	{ return notequal;}
 
  /* Assignment */
-"="		{ }
-"+="	{ }
-"-="	{ }
-"*="	{ }
-"/="	{ }
-"%="	{ }
+"="		{return *yytext;}
+"+="	{return ADDAs; }
+"-="	{return SUBAs; }
+"*="	{return MULAs; }
+"/="	{return DIVAs; }
+"%="	{return REMAs; }
 
  /* Logical */
 "&&"	{ }
@@ -50,25 +50,25 @@ id			{letter}+({letter}|{digit})*
 "!"		{ }
 
  /* Delimiters */
-"("		{ }
-")"		{ }
-"{"		{ }
-"}"		{ }
+"("		{return *yytext; }
+")"		{return *yytext; }
+"{"		{return *yytext; }
+"}"		{return *yytext;}
 
  /* Print Keywords */	
-"print"		{ }
-"println"	{ }
+"print"		{return PRINT; }
+"println"	{return PRINTLN; }
 
  /* Condition and Loop Keywords */
-"if"		{ }
-"else"		{ }
-"for"		{ }
+"if"		{return IF; }
+"else"		{return ELSE; }
+"for"		{return FOR; }
 
  /* Declaration Keywords */
-"var"		{ }
-"void"		{ }
-"int"		{ }
-"float32"	{ }
+"var"		{return VAR; }
+"void"		{return VOID; }
+"int"		{return INT; }
+"float32"	{return FLOAT; }
 
  /* String Constant */
 \"				        { BEGIN STRING_STATE;}
@@ -76,8 +76,8 @@ id			{letter}+({letter}|{digit})*
 <STRING_STATE>[^"]*		{ }
 
  /* Number Constant */
-{integer}	{ }
-{double}	{ }
+{integer}	{yylval.i_val=atof(yytext);return I_CONST;}
+{double}	{yylval.f_val=atof(yytext);return F_CONST; }
 
  /* C type Comment */
 "/*"				{ BEGIN COMMENT; }
@@ -90,14 +90,14 @@ id			{letter}+({letter}|{digit})*
 \/\/.*	{ }
 
  /* Variable ID */
- {id}       { }
+ {id}       {yylval.string=yytext[0];return ID; }
 
  /* others */
 
-[\n]		{ }
-[ \t]		{ } /* Ignore */
-[^; \t] 	{ } /* Ignore other charactor sets */
-<<EOF>>     { }
+"\n"		{return NEWLINE; }
+[ \t]		{} /* Ignore */
+[^; \t] 	{} /* Ignore other charactor sets */
+<<EOF>>     {yyterminate();return 0; }
 
 %%
 
