@@ -3,15 +3,9 @@ var a int = 3
 var x int=a+1
 var g int =0
 //iuo
-if(g==0){
- x++
-}else if (g<0){
-  x--
-}else{
- x++
-}
+x++
 a-=1
-print(a)
+print(x)
 x = a + 5 * 2
 c=1
 x = (x - 1) % 2
