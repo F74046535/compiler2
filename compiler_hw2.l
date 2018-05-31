@@ -25,8 +25,8 @@ id			{letter}+({letter}|{digit})*
 "*" 	{return *yytext; }
 "/" 	{return *yytext; }
 "%"     {return *yytext; }
-"++"    { }
-"--"    { }
+"++"    {return ADDo; }
+"--"    {return SUBo; }
 
  /* Relational */
 ">"		{return *yytext; }

@@ -886,12 +886,12 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 28 "compiler_hw2.l"
-{ }
+{return ADDo; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 29 "compiler_hw2.l"
-{ }
+{return SUBo; }
 	YY_BREAK
 /* Relational */
 case 8:

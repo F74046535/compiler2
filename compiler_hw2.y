@@ -35,7 +35,7 @@ int line=0;
 
 %token PRINT PRINTLN
 %token IF ELSE FOR
-%token VAR ID NEWLINE '=' '-' '*' '/' '%' FLOAT INT ENF '>' '<' bigger smaller equal notequal ADDAs SUBAs MULAs DIVAs REMAs
+%token VAR ID NEWLINE '=' '-' '*' '/' '%' FLOAT INT ENF '>' '<' bigger smaller equal notequal ADDAs SUBAs MULAs DIVAs REMAs ADDo SUBo
 
 %token <i_val> I_CONST 
 %token <f_val> F_CONST 
@@ -85,6 +85,8 @@ expression_stat
    |ID MULAs term {symtab[(int)$1]=symtab[(int)$1]*$3;printf("MUL ASSIGN\n");}
    |ID DIVAs term {symtab[(int)$1]=symtab[(int)$1]/$3;printf("DIV ASSIGN\n");}
    |ID REMAs term {printf("REM ASSIGN\n");}
+   |ID ADDo {symtab[(int)$1]=symtab[(int)$1]+1;printf("ADD ONE\n");}
+   |ID SUBo {symtab[(int)$1]=symtab[(int)$1]-1;printf("SUB ONE\n");}
    |term 
 
 ;

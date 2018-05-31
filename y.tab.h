@@ -65,10 +65,12 @@ extern int yydebug;
     MULAs = 275,
     DIVAs = 276,
     REMAs = 277,
-    I_CONST = 278,
-    F_CONST = 279,
-    STRING = 280,
-    VOID = 281
+    ADDo = 278,
+    SUBo = 279,
+    I_CONST = 280,
+    F_CONST = 281,
+    STRING = 282,
+    VOID = 283
   };
 #endif
 /* Tokens.  */
@@ -92,10 +94,12 @@ extern int yydebug;
 #define MULAs 275
 #define DIVAs 276
 #define REMAs 277
-#define I_CONST 278
-#define F_CONST 279
-#define STRING 280
-#define VOID 281
+#define ADDo 278
+#define SUBo 279
+#define I_CONST 280
+#define F_CONST 281
+#define STRING 282
+#define VOID 283
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -108,7 +112,7 @@ union YYSTYPE
    double f_val;
    char* string;
 
-#line 112 "y.tab.h" /* yacc.c:1909  */
+#line 116 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
